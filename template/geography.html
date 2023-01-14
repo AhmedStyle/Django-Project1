@@ -1,0 +1,91 @@
+{% load static %} {% block content %}
+<html>
+  <head>
+    <title>Job Board Home Page</title>
+    <link rel="stylesheet" href="/static/style.css" />
+    <link
+      href="https://fonts.googleapis.com/css2?family=Open+Sans:wght@400;700&display=swap"
+      rel="stylesheet"
+    />
+  </head>
+  <body>
+    <header>
+      <div class="container">
+        <div class="logo">
+          <a href="#">LOGO</a>
+        </div>
+        <nav>
+          <ul>
+            <li><a href="home.html">Home</a></li>
+            <li><a href="demand.html">Demand</a></li>
+            <li><a href="geography.html">Geography</a></li>
+            <li><a href="skills.html">Skills</a></li>
+            <li><a href="latest_jobs.html">Latest Jobs</a></li>
+          </ul>
+        </nav>
+      </div>
+    </header>
+
+    <div class="container">
+      <h1 class="text-center">Geography Page</h1>
+      <div class="row">
+        <div class="col-md-6">
+          <h2>Salary Levels by City (in descending order)</h2>
+          <table class="table table-bordered">
+            <thead>
+              <tr>
+                <th>City</th>
+                <th>Average Salary</th>
+              </tr>
+            </thead>
+            <tbody>
+              {% for data in salary_by_city %}
+              <tr>
+                <td>{{ data.city }}</td>
+                <td>{{ data.average_salary }}</td>
+              </tr>
+              {% endfor %}
+            </tbody>
+          </table>
+        </div>
+        <div class="col-md-6">
+          <h2>Salary Levels by City (Graph)</h2>
+          <img
+            src="{% static 'geography/salary_by_city.png' %}"
+            alt="Salary Levels by City"
+          />
+        </div>
+      </div>
+      <div class="row">
+        <div class="col-md-6">
+          <h2>Share of Vacancies by City (in descending order)</h2>
+          <table class="table table-bordered">
+            <thead>
+              <tr>
+                <th>City</th>
+                <th>Share of Vacancies</th>
+              </tr>
+            </thead>
+            <tbody>
+              {% for data in vacancies_by_city %}
+              <tr>
+                <td>{{ data.city }}</td>
+                <td>{{ data.vacancy_share }}</td>
+              </tr>
+              {% endfor %}
+            </tbody>
+          </table>
+        </div>
+        <div class="col-md-6">
+          <h2>Share of Vacancies by City (Graph)</h2>
+          <img src="/static/img/Area.jpg" alt="Share of Vacancies by City" />
+        </div>
+      </div>
+    </div>
+    {% endblock %}
+
+    <footer>
+      <p>Copyright © 2022 Job Board</p>
+    </footer>
+  </body>
+</html>

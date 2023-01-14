@@ -1,0 +1,157 @@
+{% load static %} {% block content %}
+
+<html>
+  <head>
+    <title>Job Board Home Page</title>
+    <link rel="stylesheet" href="/static/style.css" />
+    <link
+      href="https://fonts.googleapis.com/css2?family=Open+Sans:wght@400;700&display=swap"
+      rel="stylesheet"
+    />
+  </head>
+  <body>
+    <header>
+      <div class="container">
+        <div class="logo">
+          <a href="#">LOGO</a>
+        </div>
+        <nav>
+          <ul>
+            <li><a href="home.html">Home</a></li>
+            <li><a href="demand.html">Demand</a></li>
+            <li><a href="geography.html">Geography</a></li>
+            <li><a href="skills.html">Skills</a></li>
+            <li><a href="latest_jobs.html">Latest Jobs</a></li>
+          </ul>
+        </nav>
+      </div>
+    </header>
+
+    <div class="container">
+      <h1 class="text-center">Demand Page</h1>
+      <div class="row">
+        <div class="col-md-6">
+          <h2>Dynamics of Salary Levels by Years</h2>
+          <table class="table table-bordered">
+            <thead>
+              <tr>
+                <th>Year</th>
+                <th>Average Salary</th>
+              </tr>
+            </thead>
+            <tbody>
+              {% for data in salary_by_year %}
+              <tr>
+                <td>{{ data.year }}</td>
+                <td>{{ data.average_salary }}</td>
+              </tr>
+              {% endfor %}
+            </tbody>
+          </table>
+        </div>
+        <div class="col-md-6">
+          <img
+            src="/static/img/salary.jpg"
+            alt="Dynamics of Salary Levels by Years"
+          />
+        </div>
+      </div>
+      <div class="row">
+        <div class="col-md-6">
+          <h2>Dynamics of the Number of Vacancies by Years</h2>
+          <table class="table table-bordered">
+            <thead>
+              <tr>
+                <th>Year</th>
+                <th>Number of Vacancies</th>
+              </tr>
+            </thead>
+            <tbody>
+              {% for data in vacancies_by_year %}
+              <tr>
+                <td>{{ data.year }}</td>
+                <td>{{ data.vacancy_count }}</td>
+              </tr>
+              {% endfor %}
+            </tbody>
+          </table>
+        </div>
+        <div class="col-md-6">
+          <h2>Dynamics of the Number of Vacancies by Years (Graph)</h2>
+          <img
+            src="{% static 'demand/vacancies_by_year.png' %}"
+            alt="Dynamics of the Number of Vacancies by Years"
+          />
+        </div>
+      </div>
+      <div class="row">
+        <div class="col-md-6">
+          <h2>
+            Dynamics of the Level of Salaries by Years for the Chosen Profession
+          </h2>
+          <table class="table table-bordered">
+            <thead>
+              <tr>
+                <th>Year</th>
+                <th>Average Salary</th>
+              </tr>
+            </thead>
+            <tbody>
+              {% for data in profession_salary_by_year %}
+              <tr>
+                <td>{{ data.year }}</td>
+                <td>{{ data.average_salary }}</td>
+              </tr>
+              {% endfor %}
+            </tbody>
+          </table>
+        </div>
+        <div class="col-md-6">
+          <img
+            src="/static/img/spcProf.png"
+            alt="Dynamics of the Level of Salaries by Years for the Chosen Profession"
+          />
+        </div>
+      </div>
+      <div class="row">
+        <div class="col-md-6">
+          <h2>
+            Dynamics of the Number of Vacancies by Years for the Chosen
+            Profession
+          </h2>
+          <table class="table table-bordered">
+            <thead>
+              <tr>
+                <th>Year</th>
+                <th>Number of Vacancies</th>
+              </tr>
+            </thead>
+            <tbody>
+              {% for data in profession_vacancies_by_year %}
+              <tr>
+                <td>{{ data.year }}</td>
+                <td>{{ data.vacancy_count }}</td>
+              </tr>
+              {% endfor %}
+            </tbody>
+          </table>
+        </div>
+        <div class="col-md-6">
+          <h2>
+            Dynamics of the Number of Vacancies by Years for the Chosen
+            Profession (Graph)
+          </h2>
+          <img
+            src="{% static 'demand/profession_vacancies_by_year.png' %}"
+            alt="Dynamics of the Number of Vacancies by Years for the Chosen Profession"
+          />
+        </div>
+      </div>
+      {% endblock %}
+    </div>
+
+    <footer>
+      <p>Copyright © 2022 Job Board</p>
+    </footer>
+  </body>
+</html>

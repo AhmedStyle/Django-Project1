@@ -1,0 +1,103 @@
+{% load static %} {% block content %}
+
+<html>
+  <head>
+    <title>Job Board Home Page</title>
+    <link rel="stylesheet" href="/static/style.css" />
+    <link
+      href="https://fonts.googleapis.com/css2?family=Open+Sans:wght@400;700&display=swap"
+      rel="stylesheet"
+    />
+  </head>
+  <body>
+    <header>
+      <div class="container">
+        <div class="logo">
+          <a href="#">LOGO</a>
+        </div>
+        <nav>
+          <ul>
+            <li><a href="home.html">Home</a></li>
+            <li><a href="demand.html">Demand</a></li>
+            <li><a href="geography.html">Geography</a></li>
+            <li><a href="skills.html">Skills</a></li>
+            <li><a href="latest_jobs.html">Latest Jobs</a></li>
+          </ul>
+        </nav>
+      </div>
+    </header>
+
+    <div class="container">
+      <h1 class="text-center">Skills Page</h1>
+      <div class="row">
+        <div class="col-md-6">
+          <h2>Top 10 Skills by Year for {{ profession }}</h2>
+          <table class="table table-bordered">
+            <thead>
+              <tr>
+                <th>Year</th>
+                <th>Skill</th>
+                <th>Frequency</th>
+              </tr>
+            </thead>
+            <tbody>
+              {% for data in top_skills_by_year %}
+              <tr>
+                <td>{{ data.year }}</td>
+                <td>{{ data.skill }}</td>
+                <td>{{ data.frequency }}</td>
+              </tr>
+              {% endfor %}
+            </tbody>
+          </table>
+        </div>
+        <div class="col-md-6">
+          <h2>Top 10 Skills by Year for {{ profession }} (Graph)</h2>
+          <img
+            src="{% static 'skills/top_skills_by_year.png' %}"
+            alt="Top 10 Skills by Year for {{ profession }}"
+          />
+        </div>
+      </div>
+      <div class="row">
+        <div class="col-md-6">
+          <h2>
+            Most High-Frequency Skills (according to field analysis: key_skills)
+            for {{ profession }}
+          </h2>
+          <table class="table table-bordered">
+            <thead>
+              <tr>
+                <th>Skill</th>
+                <th>Frequency</th>
+              </tr>
+            </thead>
+            <tbody>
+              {% for data in key_skills %}
+              <tr>
+                <td>{{ data.skill }}</td>
+                <td>{{ data.frequency }}</td>
+              </tr>
+              {% endfor %}
+            </tbody>
+          </table>
+        </div>
+        <div class="col-md-6">
+          <h2>
+            Most High-Frequency Skills (according to field analysis: key_skills)
+            for {{ profession }} (Graph)
+          </h2>
+          <img
+            src="{% static 'skills/key_skills.png' %}"
+            alt="Most High-Frequency Skills (according to field analysis: key_skills) for {{ profession }}"
+          />
+        </div>
+      </div>
+      {% endblock %}
+    </div>
+
+    <footer>
+      <p>Copyright © 2022 Job Board</p>
+    </footer>
+  </body>
+</html>
